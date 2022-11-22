@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DesarrolloMTZ.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +9,22 @@ namespace DesarrolloMTZ.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(Desarrollo_MTZ_MV desarrollo_MTZ)
         {
+            if (desarrollo_MTZ != null)
+            {
+                if (desarrollo_MTZ.datosI != null)
+                {
+                    var logica = new Logica.LogicaMTZ();
+
+                    var result = logica.Calcular(desarrollo_MTZ);
+                   
+                    return View(result);
+                }
+                
+            }
             return View();
+            
         }
 
         public ActionResult About()
